@@ -37,5 +37,8 @@ The SEIRQP model is described by following differential equations
 ## Parameter Estimation
 The fitting is done using the time histories of the number of quarantined Q(t), recovered R(t) and deaths D(t) only. Time histories obtained from   https://www.worldometers.info/coronavirus/country/india/
 
+![estimated model](/estm_04-22.png)
+
 ## Forecast from estimated model
+![forecast](/frcst_04-22.png)
 
