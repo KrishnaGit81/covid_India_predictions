@@ -1,6 +1,7 @@
 
 # Compartmental Epidemic Model for COVID analysis
 ![seirqdp model](/seirqdp.png)
+
 To characterize the epidemic of COVID-19, a generalized classical SEIR model is used by introducing 7 different states
 Constant $$N=S+P+E+I+Q+R+D$$ is the total population.
 The coefficients are
