@@ -1,5 +1,5 @@
 
-covid
-# compartmental epidemic model for covid analysis
+# Compartmental Epidemic Model for COVID analysis
 ![seirqdp model](/seirqdp.png)
+
 $$a^b$$
