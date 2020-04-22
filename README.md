@@ -1,18 +1,40 @@
 
 # Compartmental Epidemic Model for COVID analysis
+reference : https://arxiv.org/pdf/2002.06563.pdf
+
 ![seirqdp model](/seirqdp.png)
 
 To characterize the epidemic of COVID-19, a generalized classical SEIR model is used by introducing 7 different states
-Constant <p align="center"><img src="/tex/bb9188fdda20aa975fe905e0527c2622.svg?invert_in_darkmode&sanitize=true" align=middle width=242.59716854999996pt height=14.42921205pt/></p> is the total population.
-The coefficients are
-*<p align="left"><img src="/tex/a6eca520b045472266ecb2c6c5f2a71c.svg?invert_in_darkmode&sanitize=true" align=left width=10.576504949999999pt height=7.0776222pt/></p> → protection rate
-*<p align="left"><img src="/tex/d74acd278fad497ab7a6e38616718ebc.svg?invert_in_darkmode&sanitize=true" align=left width=10.165550999999999pt height=14.611878599999999pt/></p> → infection rate
-*<p align="left"><img src="/tex/2c0da98e9c4fe60111c204449e329f9f.svg?invert_in_darkmode&sanitize=true" align=left width=26.25042915pt height=17.399144399999997pt/></p> → avg latent time
-*<p align="left"><img src="/tex/cfabb555ac9b0e396f5e788663f376c6.svg?invert_in_darkmode&sanitize=true" align=left width=24.7546398pt height=14.202794099999998pt/></p> → avg quarantine time
-*<p align="left"><img src="/tex/067d63d908a15151c5ec5403374e410c.svg?invert_in_darkmode&sanitize=true" align=left width=164.93717955pt height=20.5316694pt/></p> → cure rate
-*<p align="left"><img src="/tex/89a39e63fc0cc1bc7792643ec8ba7f4e.svg?invert_in_darkmode&sanitize=true" align=left width=106.70107635000001pt height=18.0201615pt/></p> → mortality rate
-  
-It is assumed the cure rate <p align="left"><img src="/tex/18f8eacfb4280d2c13c04e23edc6650d.svg?invert_in_darkmode&sanitize=true" align=left width=9.589082249999999pt height=11.4155283pt/></p> and the mortality rate <p align="left"><img src="/tex/8d8d6de7d9b2c975505cf593972a87a0.svg?invert_in_darkmode&sanitize=true" align=middle width=9.4711155pt height=7.0776222pt/></p> are both time dependent.
-The SEIRQP model is described by following differential equations
 
-<p align="left"><img src="/tex/cc4cde61b4f05d62b730cf403142b380.svg?invert_in_darkmode&sanitize=true&sanitize=true" align=left width=14.469991799999997pt height=14.77813755pt/></p>
+Constant <p align="center"><img src="/tex/bb9188fdda20aa975fe905e0527c2622.svg?invert_in_darkmode&sanitize=true" align=middle width=242.59716854999996pt height=14.42921205pt/></p> is the total population.
+
+The coefficients are
+*`<\alpha>` → protection rate
+*`<\beta>` → infection rate
+*`<\gamma^{-1}>` → avg latent time
+*`<\delta^{-1}>` → avg quarantine time
+*`<\lambda(t)=\lambda_0(1-e^{-\lambda_1t})>` → cure rate
+*`<\kappa(t)=\kappa_0e^{-\kappa_1t}>` → mortality rate
+
+It is assumed the cure rate `<\lambda>` and the mortality rate `<\kappa>` are both time dependent.
+
+The SEIRQP model is described by following differential equations
+$$\frac{dS\left(t\right)}{dt}=-\beta\frac{S\left(t\right)I\left(t\right)}{N}-\alpha S\left(t\right)$$
+
+$$\frac{dE\left(t\right)}{dt}=\beta\frac{S\left(t\right)I\left(t\right)}{N}-\gamma E\left(t\right)$$
+
+$$\frac{dI\left(t\right)}{dt}=\gamma E\left(t\right)-\delta I\left(t\right)$$
+
+$$\frac{dQ\left(t\right)}{dt}=\delta I\left(t\right)-\lambda\left(t\right)Q\left(t\right)-\kappa\left(t\right)Q\left(t\right)$$
+
+$$\frac{dR\left(t\right)}{dt}=\lambda\left(t\right)Q\left(t\right)$$
+
+$$\frac{dD\left(t\right)}{dt}=\kappa\left(t\right)Q\left(t\right)$$
+
+$$\frac{dP\left(t\right)}{dt}=\alpha S\left(t\right) $$
+
+## Parameter Estimation
+The fitting is done using the time histories of the number of quarantined Q(t), recovered R(t) and deaths D(t) only. Time histories obtained from   https://www.worldometers.info/coronavirus/country/india/
+
+## Forecast from estimated model
+
